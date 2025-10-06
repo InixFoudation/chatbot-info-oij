@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot Ballon d'Or 2025</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2"/></svg>');
+            background-size: 200px 200px;
+            opacity: 0.3;
+            z-index: -1;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            width: 100%;
+            max-width: 800px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        
+        .container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 1200px;
+            gap: 20px;
+            flex: 1;
+        }
+        
+        .logos-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+            margin-bottom: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .logo-card {
+            width: 120px;
+            height: 120px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .logo-card:hover {
+            transform: translateY(-5px) scale(1.05);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .logo-emoji {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+        
+        .logo-name {
+            font-size: 0.8rem;
+            text-align: center;
+            font-weight: 600;
+            opacity: 0.9;
+        }
+        
+        .chat-container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .chat-header {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .chat-header h2 {
+            font-size: 1.5rem;
+            margin-left: 10px;
+        }
+        
+        .chat-messages {
+            height: 400px;
+            overflow-y: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .message {
+            max-width: 80%;
+            padding: 12px 15px;
+            border-radius: 18px;
+            line-height: 1.4;
+            position: relative;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .user-message {
+            align-self: flex-end;
+            background: rgba(56, 128, 255, 0.8);
+            border-bottom-right-radius: 5px;
+        }
+        
+        .bot-message {
+            align-self: flex-start;
+            background: rgba(255, 255, 255, 0.2);
+            border-bottom-left-radius: 5px;
+        }
+        
+        .chat-input {
+            display: flex;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.2);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .chat-input input {
+            flex: 1;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            font-size: 1rem;
+            outline: none;
+        }
+        
+        .chat-input input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .chat-input button {
+            margin-left: 10px;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 25px;
+            background: rgba(56, 128, 255, 0.9);
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .chat-input button:hover {
+            background: rgba(56, 128, 255, 1);
+        }
+        
+        .suggestions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 10px 20px;
+            background: rgba(0, 0, 0, 0.1);
+        }
+        
+        .suggestion {
+            padding: 8px 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .suggestion:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .year-selector {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 10px 0;
+            flex-wrap: wrap;
+        }
+        
+        .year-btn {
+            padding: 6px 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            color: white;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+        
+        .year-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+        
+        .main-footer {
+            margin-top: 40px;
+            text-align: center;
+            padding: 25px 20px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 15px;
+            width: 100%;
+            max-width: 800px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .footer-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #fdbb2d;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        
+        .footer-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+        
+        .footer-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        .footer-section {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .footer-section strong {
+            color: #fdbb2d;
+        }
+        
+        .copyright {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 0.8rem;
+            opacity: 0.7;
+            width: 100%;
+        }
+        
+        @media (max-width: 768px) {
+            .logos-gallery {
+                gap: 15px;
+            }
+            
+            .logo-card {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .logo-emoji {
+                font-size: 30px;
+            }
+            
+            .logo-name {
+                font-size: 0.7rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .suggestions {
+                flex-direction: column;
+            }
+            
+            .footer-info {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .footer-title {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🏆 Ballon d'Or</h1>
+        <p class="subtitle">Chatbot informatif sur la cérémonie du Ballon d'Or</p>
+    </div>
+    
+    <div class="container">
+        <div class="logos-gallery">
+            <!-- Logos des entités impliquées dans le Ballon d'Or -->
+        </div>
+        
+        <div class="chat-container">
+            <div class="chat-header">
+                <h2>Chatbot Ballon d'Or</h2>
+            </div>
+            
+            <div class="chat-messages" id="chatMessages">
+                <div class="message bot-message">
+                    Bonjour ! Je suis votre assistant virtuel pour la cérémonie du Ballon d'Or. Posez-moi vos questions sur les gagnants, le lieu, la date, ou les éditions précédentes (2019-2025) !
+                </div>
+            </div>
+            
+            <div class="suggestions" id="suggestions">
+                <div class="suggestion">Qui a remporté le Ballon d'Or cette année ?</div>
+                <div class="suggestion">Où s'est déroulée la cérémonie ?</div>
+                <div class="suggestion">Qui a gagné le Trophée Kopa ?</div>
+                <div class="suggestion">Qui a remporté le Ballon d'Or féminin ?</div>
+                <div class="suggestion">Quelle est la date de la cérémonie ?</div>
+            </div>
+            
+            <div id="yearSelector" class="year-selector" style="display: none;">
+                <!-- Les boutons d'années seront ajoutés dynamiquement -->
+            </div>
+            
+            <div class="chat-input">
+                <input type="text" id="userInput" placeholder="Posez votre question sur le Ballon d'Or...">
+                <button id="sendButton">Envoyer</button>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-logo">🚀</div>
+            <div class="footer-title">GROUPE ES-OIJ</div>
+            <div class="footer-subtitle">Solutions Innovantes en Intelligence Artificielle</div>
+            
+            <div class="footer-info">
+                <div class="footer-section">
+                    <strong>Domaine</strong>
+                    <span>Chercheur en IA</span>
+                    <span>Administration des Systems <br> et Reseaux</span>
+                    <span>Solutions Digitales</span>
+                </div>
+                
+                <div class="footer-section">
+                    <strong>Contact</strong>
+                    <span>williamfonkou@yandex.ru</span>
+                    <span>+237 695 02 14 43 (WhatSapp)</span>
+                    <span>+7 961 010 14 38 (WhatSapp)</span>
+                    <span>Baf, CMR</span>
+                </div>
+                
+                <div class="footer-section">
+                    <strong>Services</strong>
+                    <span>Développement IA</span>
+                    <span>Formation</span>
+                    <span>Consulting</span>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                © 2025 Groupe ES-OIJ - Tous droits réservés | Chatbot Ballon d'Or - Projet d'Automatisation IA
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Base de données COMPLÈTE et CORRECTE des informations sur le Ballon d'Or
+        const ballonDorData = {
+            "2025": {
+                "ballonDor": "Ousmane Dembélé",
+                "ballonDorFeminin": "Aitana Bonmatí",
+                "lieu": "Théâtre du Châtelet, Paris, France",
+                "date": "28 octobre 2025",
+                "tropheeKopa": "Lamine Yamal"
+            },
+            "2024": {
+                "ballonDor": "Rodri",
+                "ballonDorFeminin": "Aitana Bonmatí",
+                "lieu": "Théâtre du Châtelet, Paris, France",
+                "date": "28 octobre 2024",
+                "tropheeKopa": "Lamine Yamal"
+            },
+            "2023": {
+                "ballonDor": "Lionel Messi",
+                "ballonDorFeminin": "Aitana Bonmatí",
+                "lieu": "Théâtre du Châtelet, Paris, France",
+                "date": "30 octobre 2023",
+                "tropheeKopa": "Jude Bellingham"
+            },
+            "2022": {
+                "ballonDor": "Karim Benzema",
+                "ballonDorFeminin": "Alexia Putellas",
+                "lieu": "Théâtre du Châtelet, Paris, France",
+                "date": "17 octobre 2022",
+                "tropheeKopa": "Gavi"
+            },
+            "2021": {
+                "ballonDor": "Lionel Messi",
+                "ballonDorFeminin": "Alexia Putellas",
+                "lieu": "Théâtre du Châtelet, Paris, France",
+                "date": "29 novembre 2021",
+                "tropheeKopa": "Pedri"
+            },
+            "2020": {
+                "ballonDor": "Non décerné (COVID-19)",
+                "ballonDorFeminin": "Non décerné (COVID-19)",
+                "lieu": "Cérémonie annulée",
+                "date": "Non organisée",
+                "tropheeKopa": "Non décerné"
+            },
+            "2019": {
+                "ballonDor": "Lionel Messi",
+                "ballonDorFeminin": "Megan Rapinoe",
+                "lieu": "Théâtre du Châtelet, Paris, France",
+                "date": "2 décembre 2019",
+                "tropheeKopa": "Matthijs de Ligt"
+            }
+        };
+
+        // Historique complet du Trophée Kopa
+        const kopaHistory = {
+            "2025": "Lamine Yamal",
+            "2024": "Lamine Yamal", 
+            "2023": "Jude Bellingham",
+            "2022": "Gavi",
+            "2021": "Pedri",
+            "2020": "Non décerné (COVID-19)",
+            "2019": "Matthijs de Ligt",
+            "2018": "Kylian Mbappé"
+        };
+
+        // Logos des entités impliquées dans le Ballon d'Or
+        const entities = [
+            { name: "France Football", emoji: "🇫🇷", description: "Organisateur historique" },
+            { name: "FIFA", emoji: "⚽", description: "Partenaire international" },
+            { name: "UEFA", emoji: "🏆", description: "Confédération européenne" },
+            { name: "Ligue 1", emoji: "⭐", description: "Championnat français" },
+            { name: "La Liga", emoji: "🔴", description: "Championnat espagnol" },
+            { name: "Premier League", emoji: "🦁", description: "Championnat anglais" },
+            { name: "Serie A", emoji: "🔵", description: "Championnat italien" },
+            { name: "Bundesliga", emoji: "🔶", description: "Championnat allemand" }
+        ];
+
+        // Initialisation de la galerie de logos
+        function initLogosGallery() {
+            const gallery = document.querySelector('.logos-gallery');
+            entities.forEach(entity => {
+                const logoCard = document.createElement('div');
+                logoCard.className = 'logo-card';
+                logoCard.title = entity.description;
+                logoCard.innerHTML = `
+                    <div class="logo-emoji">${entity.emoji}</div>
+                    <div class="logo-name">${entity.name}</div>
+                `;
+                gallery.appendChild(logoCard);
+            });
+        }
+
+        // Afficher le sélecteur d'années
+        function showYearSelector() {
+            const yearSelector = document.getElementById('yearSelector');
+            yearSelector.innerHTML = '';
+            yearSelector.style.display = 'flex';
+            
+            const years = ['2025', '2024', '2023', '2022', '2021', '2020', '2019'];
+            years.forEach(year => {
+                const yearBtn = document.createElement('button');
+                yearBtn.className = 'year-btn';
+                yearBtn.textContent = year;
+                yearBtn.onclick = function() {
+                    const response = processQuestion(`date cérémonie ${year}`);
+                    addMessage(response);
+                    yearSelector.style.display = 'none';
+                };
+                yearSelector.appendChild(yearBtn);
+            });
+        }
+
+        // Fonction pour traiter les questions de l'utilisateur
+        function processQuestion(question) {
+            question = question.toLowerCase();
+            
+            // Vérification de l'année mentionnée
+            let yearMatch = question.match(/(\d{4})/);
+            let year = yearMatch ? yearMatch[1] : "2025";
+            
+            // Si l'année demandée n'est pas dans notre base de données
+            if (!ballonDorData[year]) {
+                return `Je n'ai pas d'informations détaillées sur le Ballon d'Or ${year}. Je peux vous renseigner sur les éditions de 2019 à 2025.`;
+            }
+            
+            const data = ballonDorData[year];
+            
+            // Détection du type de question
+            if (question.includes("qui") && question.includes("remport") && question.includes("ballon d'or") && !question.includes("féminin")) {
+                if (year === "2020") {
+                    return `Le Ballon d'Or 2020 n'a pas été décerné en raison de la pandémie de COVID-19.`;
+                }
+                return `Le Ballon d'Or ${year} a été remporté par ${data.ballonDor}.`;
+            }
+            else if (question.includes("qui") && question.includes("remport") && question.includes("ballon d'or") && question.includes("féminin")) {
+                if (year === "2020") {
+                    return `Le Ballon d'Or Féminin 2020 n'a pas été décerné en raison de la pandémie de COVID-19.`;
+                }
+                return `Le Ballon d'Or Féminin ${year} a été remporté par ${data.ballonDorFeminin}.`;
+            }
+            else if (question.includes("où") || question.includes("lieu")) {
+                if (year === "2020") {
+                    return `La cérémonie du Ballon d'Or 2020 a été annulée en raison de la pandémie de COVID-19.`;
+                }
+                return `La cérémonie du Ballon d'Or ${year} s'est déroulée à ${data.lieu}.`;
+            }
+            else if (question.includes("quand") || question.includes("date")) {
+                if (year === "2020") {
+                    return `La cérémonie du Ballon d'Or 2020 a été annulée en raison de la pandémie de COVID-19.`;
+                }
+                return `La cérémonie du Ballon d'Or ${year} a eu lieu le ${data.date}.`;
+            }
+            else if (question.includes("kopa")) {
+                if (question.includes("historique") || question.includes("palmarès")) {
+                    let response = "🏆 Historique du Trophée Kopa :\n";
+                    Object.keys(kopaHistory).reverse().forEach(yr => {
+                        response += `- ${yr} : ${kopaHistory[yr]}\n`;
+                    });
+                    return response;
+                }
+                if (year === "2020") {
+                    return `Le Trophée Kopa 2020 n'a pas été décerné en raison de la pandémie de COVID-19.`;
+                }
+                return `Le Trophée Kopa ${year} a été remporté par ${data.tropheeKopa}.`;
+            }
+            else if (question.includes("ballon d'or") && (question.includes("information") || question.includes("détail") || question.includes("résultat"))) {
+                if (year === "2020") {
+                    return `Le Ballon d'Or 2020 n'a pas été décerné en raison de la pandémie de COVID-19 qui a perturbé la saison de football.`;
+                }
+                return `📊 Informations sur le Ballon d'Or ${year} :
+🏅 Ballon d'Or : ${data.ballonDor}
+👑 Ballon d'Or Féminin : ${data.ballonDorFeminin}
+🌟 Trophée Kopa : ${data.tropheeKopa}
+📍 Lieu : ${data.lieu}
+📅 Date : ${data.date}`;
+            }
+            else if (question.includes("histoire") || question.includes("gagnants") || question.includes("liste")) {
+                return `📜 Palmarès du Ballon d'Or depuis 2019 :
+🥇 2025 : Ousmane Dembélé
+🥇 2024 : Rodri  
+🥇 2023 : Lionel Messi
+🥇 2022 : Karim Benzema
+🥇 2021 : Lionel Messi
+❌ 2020 : Non décerné (COVID-19)
+🥇 2019 : Lionel Messi
+
+👑 Palmarès du Ballon d'Or Féminin :
+🥇 2025 : Aitana Bonmatí (3ème victoire consécutive)
+🥇 2024 : Aitana Bonmatí
+🥇 2023 : Aitana Bonmatí
+🥇 2022 : Alexia Putellas
+🥇 2021 : Alexia Putellas
+❌ 2020 : Non décerné (COVID-19)
+🥇 2019 : Megan Rapinoe`;
+            }
+            else if (question.includes("record") || question.includes("bonmatí")) {
+                return `👑 Aitana Bonmatí détient le record du Ballon d'Or Féminin avec 3 victoires consécutives (2023, 2024, 2025) !`;
+            }
+            else if (question.includes("entités") || question.includes("organisateurs") || question.includes("partenaires")) {
+                return `🏢 Entités impliquées dans le Ballon d'Or :
+• France Football 🇫🇷 - Organisateur historique
+• FIFA ⚽ - Partenaire international  
+• UEFA 🏆 - Confédération européenne
+• Ligue 1 ⭐ - Championnat français
+• La Liga 🔴 - Championnat espagnol
+• Premier League 🦁 - Championnat anglais
+• Serie A 🔵 - Championnat italien
+• Bundesliga 🔶 - Championnat allemand`;
+            }
+            else if (question.includes("es-oij") || question.includes("groupe")) {
+                return `🚀 **Groupe ES-OIJ**
+                
+*Solutions Innovantes en Intelligence Artificielle*
+
+📧 contact@es-oij.com
+📍 Paris, France
+
+*Expertises :*
+• Automatisation IA
+• Chatbots Intelligents  
+• Développement d'Applications
+• Solutions Digitales Sur Mesure
+
+*Notre mission :* Développer des solutions IA innovantes pour transformer vos processus et améliorer l'expérience utilisateur.`;
+            }
+            else {
+                return `Je ne suis pas sûr de comprendre votre question sur le Ballon d'Or. Pouvez-vous reformuler ? Je peux vous renseigner sur les gagnants, le lieu, la date, le Trophée Kopa ou les entités organisatrices pour les années 2019 à 2025.`;
+            }
+        }
+
+        // Fonction pour ajouter un message dans le chat
+        function addMessage(message, isUser = false) {
+            const chatMessages = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+            messageDiv.textContent = message;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Initialisation du chatbot
+        document.addEventListener('DOMContentLoaded', function() {
+            initLogosGallery();
+            
+            const userInput = document.getElementById('userInput');
+            const sendButton = document.getElementById('sendButton');
+            const suggestions = document.getElementById('suggestions');
+            
+            // Gestion de l'envoi de message
+            function sendMessage() {
+                const question = userInput.value.trim();
+                if (question) {
+                    addMessage(question, true);
+                    userInput.value = '';
+                    
+                    // Si la question concerne la date, afficher le sélecteur d'années
+                    if (question.toLowerCase().includes("date") && question.toLowerCase().includes("cérémonie")) {
+                        setTimeout(() => {
+                            addMessage("Pour quelle année voulez-vous connaître la date de la cérémonie ?");
+                            showYearSelector();
+                        }, 500);
+                    } else {
+                        // Simulation du temps de traitement
+                        setTimeout(() => {
+                            const response = processQuestion(question);
+                            addMessage(response);
+                        }, 1000);
+                    }
+                }
+            }
+            
+            sendButton.addEventListener('click', sendMessage);
+            
+            userInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+            
+            // Gestion des suggestions de questions
+            suggestions.querySelectorAll('.suggestion').forEach(suggestion => {
+                suggestion.addEventListener('click', function() {
+                    const question = this.textContent;
+                    userInput.value = question;
+                    
+                    if (question.includes("date")) {
+                        userInput.focus();
+                        setTimeout(() => {
+                            sendMessage();
+                        }, 100);
+                    } else {
+                        userInput.focus();
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
