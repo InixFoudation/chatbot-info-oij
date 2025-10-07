@@ -13,8 +13,8 @@
         }
         
         body {
-            background: transparent;
-            color: white;
+            background: #0e1621;
+            color: #e6e6e6;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -24,44 +24,29 @@
             overflow-x: hidden;
         }
         
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.7) 100%);
-            background-image: url('https://images.unsplash.com/photo-1575361204480-aadea25e6e68?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80');
-            background-size: cover;
-            background-position: center;
-            opacity: 0.3;
-            z-index: -1;
-        }
-        
         .header {
             text-align: center;
             margin-bottom: 30px;
             padding: 20px;
-            background: rgba(0, 0, 0, 0.5);
+            background: #17212b;
             border-radius: 15px;
             width: 100%;
             max-width: 800px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            border: 1px solid #2b5278;
         }
         
         h1 {
             font-size: 2.5rem;
             margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            color: #6ab2f2;
         }
         
         .subtitle {
             font-size: 1.2rem;
             margin-bottom: 20px;
             opacity: 0.9;
+            color: #7f91a4;
         }
         
         .container {
@@ -81,16 +66,15 @@
             gap: 25px;
             margin-bottom: 20px;
             padding: 20px;
-            background: rgba(255, 255, 255, 0.05);
+            background: #17212b;
             border-radius: 15px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid #2b5278;
         }
         
         .logo-card {
             width: 120px;
             height: 120px;
-            background: rgba(255, 255, 255, 0.1);
+            background: #1f2d3b;
             border-radius: 15px;
             display: flex;
             flex-direction: column;
@@ -99,11 +83,12 @@
             padding: 15px;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border: 1px solid #2b5278;
         }
         
         .logo-card:hover {
             transform: translateY(-5px) scale(1.05);
-            background: rgba(255, 255, 255, 0.15);
+            background: #243447;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
         }
         
@@ -120,27 +105,28 @@
         }
         
         .chat-container {
-            background: rgba(255, 255, 255, 0.1);
+            background: #17212b;
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            border: 1px solid #2b5278;
             width: 100%;
             max-width: 800px;
             margin: 0 auto;
         }
         
         .chat-header {
-            background: rgba(0, 0, 0, 0.3);
+            background: #1f2d3b;
             padding: 15px 20px;
             display: flex;
             align-items: center;
+            border-bottom: 1px solid #2b5278;
         }
         
         .chat-header h2 {
             font-size: 1.5rem;
             margin-left: 10px;
+            color: #6ab2f2;
         }
         
         .chat-messages {
@@ -150,6 +136,7 @@
             display: flex;
             flex-direction: column;
             gap: 15px;
+            background: #0e1621;
         }
         
         .message {
@@ -159,6 +146,7 @@
             line-height: 1.4;
             position: relative;
             animation: fadeIn 0.3s ease;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
         }
         
         @keyframes fadeIn {
@@ -168,21 +156,23 @@
         
         .user-message {
             align-self: flex-end;
-            background: rgba(56, 128, 255, 0.8);
+            background: #2b5278;
             border-bottom-right-radius: 5px;
+            color: white;
         }
         
         .bot-message {
             align-self: flex-start;
-            background: rgba(255, 255, 255, 0.2);
+            background: #2e7d32;
             border-bottom-left-radius: 5px;
+            color: white;
         }
         
         .chat-input {
             display: flex;
             padding: 15px;
-            background: rgba(0, 0, 0, 0.2);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            background: #1f2d3b;
+            border-top: 1px solid #2b5278;
         }
         
         .chat-input input {
@@ -190,14 +180,15 @@
             padding: 12px 15px;
             border: none;
             border-radius: 25px;
-            background: rgba(255, 255, 255, 0.15);
+            background: #0e1621;
             color: white;
             font-size: 1rem;
             outline: none;
+            border: 1px solid #2b5278;
         }
         
         .chat-input input::placeholder {
-            color: rgba(255, 255, 255, 0.7);
+            color: #7f91a4;
         }
         
         .chat-input button {
@@ -205,7 +196,7 @@
             padding: 12px 20px;
             border: none;
             border-radius: 25px;
-            background: rgba(56, 128, 255, 0.9);
+            background: #2b5278;
             color: white;
             font-weight: bold;
             cursor: pointer;
@@ -213,7 +204,7 @@
         }
         
         .chat-input button:hover {
-            background: rgba(56, 128, 255, 1);
+            background: #3a6ea5;
         }
         
         .suggestions {
@@ -221,20 +212,22 @@
             flex-wrap: wrap;
             gap: 10px;
             padding: 10px 20px;
-            background: rgba(0, 0, 0, 0.1);
+            background: #1f2d3b;
+            border-top: 1px solid #2b5278;
         }
         
         .suggestion {
             padding: 8px 15px;
-            background: rgba(255, 255, 255, 0.1);
+            background: #2b5278;
             border-radius: 20px;
             font-size: 0.9rem;
             cursor: pointer;
             transition: background 0.3s ease;
+            color: white;
         }
         
         .suggestion:hover {
-            background: rgba(255, 255, 255, 0.2);
+            background: #3a6ea5;
         }
         
         .year-selector {
@@ -247,8 +240,8 @@
         
         .year-btn {
             padding: 6px 12px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: #2b5278;
+            border: 1px solid #3a6ea5;
             border-radius: 15px;
             color: white;
             cursor: pointer;
@@ -257,7 +250,7 @@
         }
         
         .year-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
+            background: #3a6ea5;
             transform: scale(1.05);
         }
         
@@ -265,13 +258,12 @@
             margin-top: 40px;
             text-align: center;
             padding: 25px 20px;
-            background: rgba(0, 0, 0, 0.6);
+            background: #17212b;
             border-radius: 15px;
             width: 100%;
             max-width: 800px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border: 1px solid #2b5278;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
         
         .footer-content {
@@ -289,14 +281,14 @@
         .footer-title {
             font-size: 1.5rem;
             font-weight: bold;
-            color: #fdbb2d;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            color: #6ab2f2;
         }
         
         .footer-subtitle {
             font-size: 1rem;
             opacity: 0.9;
             margin-bottom: 10px;
+            color: #7f91a4;
         }
         
         .footer-info {
@@ -315,16 +307,17 @@
         }
         
         .footer-section strong {
-            color: #fdbb2d;
+            color: #6ab2f2;
         }
         
         .copyright {
             margin-top: 15px;
             padding-top: 15px;
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            border-top: 1px solid #2b5278;
             font-size: 0.8rem;
             opacity: 0.7;
             width: 100%;
+            color: #7f91a4;
         }
         
         @media (max-width: 768px) {
